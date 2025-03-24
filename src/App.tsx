@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Box, CssBaseline, Typography } from "@mui/material"
 import { TodoList } from './components/TodoList';
 import { TodoInput } from './components/TodoInput';
+import { theme } from './theme/theme';
 
 
 export interface Todo {
@@ -39,13 +40,19 @@ function App() {
         width={'100vw'}
         height={'100vh'}
         overflow={'auto'}
-        sx={{ backgroundImage: "radial-gradient(circle, rgba(54,4,25,1) 23%, rgba(2,12,28,1) 69%, rgba(33,105,189,1) 87%)" }}>
 
+        sx={{ background: "linear-gradient(black,rgb(81, 53, 15)) padding-box,linear-gradient(90deg, #FF512F, #F09819) border-box" }}
+        borderRadius={10}
+        border={'5px solid transparent'}>
+
+        
         <Typography
           variant='h1'
           textAlign={'center'}
           color='primary'
-          p={5}>Todo App</Typography>
+          p={5}>
+          Todo App
+        </Typography>
         <Box
           flex={1}
           my={2}>
