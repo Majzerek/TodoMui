@@ -6,7 +6,7 @@ import { TodoInput } from './components/TodoInput';
 
 export interface Todo {
   id: number,
-  text:string,
+  text: string,
   completed: boolean,
 }
 function App() {
@@ -14,29 +14,47 @@ function App() {
   const [todos, setTodos] = useState<Todo[]>(save ? JSON.parse(save) : [])
 
 
-  const deleteTodo = (taskId:number) => {
-    setTodos((prev) => 
-    prev.filter((todo) => todo.id !== taskId));
+  const deleteTodo = (taskId: number) => {
+    setTodos((prev) =>
+      prev.filter((todo) => todo.id !== taskId));
   }
 
-  const toogleTodo = (taskId:number) => {
-    setTodos((prev) => 
-      prev.map((todo) => todo.id === taskId ? {...todo, completed: !todo.completed} : todo))
+  const toogleTodo = (taskId: number) => {
+    setTodos((prev) =>
+      prev.map((todo) => todo.id === taskId ? { ...todo, completed: !todo.completed } : todo))
   }
   useMemo(() => {
     localStorage.setItem("TODO", JSON.stringify(todos))
-  },[todos])
+  }, [todos])
 
   return (
     <>
       <CssBaseline />
-      <Box display={'flex'} justifyContent={'start'} alignItems={'center'} alignContent={'center'} width={'100vw'} height={'100vh'} overflow={'auto'} sx={{backgroundImage:"radial-gradient(circle, rgba(54,4,25,1) 23%, rgba(2,12,28,1) 69%, rgba(33,105,189,1) 87%)"}} flexDirection={'column'}>
+      <Box
+        display={'flex'}
+        flexDirection={'column'}
+        justifyContent={'start'}
+        alignItems={'center'}
+        alignContent={'center'}
+        width={'100vw'}
+        height={'100vh'}
+        overflow={'auto'}
+        sx={{ backgroundImage: "radial-gradient(circle, rgba(54,4,25,1) 23%, rgba(2,12,28,1) 69%, rgba(33,105,189,1) 87%)" }}>
 
-        <Typography variant='h1' textAlign={'center'} color='primary'>Todo App</Typography>
-        <Box flex={1} my={2}>
-          <TodoInput setTodos={setTodos} todos={todos}/>
+        <Typography
+          variant='h1'
+          textAlign={'center'}
+          color='primary'
+          p={5}>Todo App</Typography>
+        <Box
+          flex={1}
+          my={2}>
+          <TodoInput setTodos={setTodos} todos={todos} />
         </Box>
-        <Box flex={3} maxWidth={'80%'} overflow={'auto'}>
+        <Box
+          flex={3}
+          maxWidth={'80%'}
+          overflow={'auto'}>
           <TodoList todosList={todos} deleteTodo={deleteTodo} toogleTodo={toogleTodo} />
         </Box>
       </Box>
