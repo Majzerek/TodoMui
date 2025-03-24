@@ -2,8 +2,6 @@ import { useMemo, useState } from 'react'
 import { Box, CssBaseline, Typography } from "@mui/material"
 import { TodoList } from './components/TodoList';
 import { TodoInput } from './components/TodoInput';
-import { theme } from './theme/theme';
-
 
 export interface Todo {
   id: number,
@@ -40,11 +38,9 @@ function App() {
         width={'100vw'}
         height={'100vh'}
         overflow={'auto'}
-
         sx={{ background: "linear-gradient(black,rgb(81, 53, 15)) padding-box,linear-gradient(90deg, #FF512F, #F09819) border-box" }}
         borderRadius={10}
         border={'5px solid transparent'}>
-
         
         <Typography
           variant='h1'
