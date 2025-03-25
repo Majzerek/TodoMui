@@ -41,10 +41,13 @@ export const TodoList = ({ todosList, deleteTodo, toogleTodo }: TodoListType) =>
             textOverflow={'ellipsis'}
             width={'40%'}
             flex={2}
-            sx={todo.completed ? { color: 'grey', textDecoration: 'line-through' } : undefined}
+            borderBottom={`4px solid ${theme.palette.secondary.main}`}
+            borderRadius={3}
+            p={0.7}
+            sx={todo.completed ? { color: 'grey', textDecoration: 'line-through', borderColor: ' lightgray' } : undefined}
             title={todo.text}>{todo.text}</Box>
             <Box component={'span'} flex={0}>
-              <Button color={'warning'} sx={{ mr: 1 }} variant={'contained'} onClick={() => deleteTodo(todo.id)}>Delete</Button>
+              <Button color={'error'} sx={{ mr: 1 }} variant={'contained'} onClick={() => deleteTodo(todo.id)}>Delete</Button>
               <Button color='secondary' variant={'contained'} onClick={() => toogleTodo(todo.id)} disabled={todo.completed}>Finished</Button>
             </Box>
           </Typography>)}

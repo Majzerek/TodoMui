@@ -32,7 +32,7 @@ export const TodoInput: FC<{ setTodos: React.Dispatch<React.SetStateAction<Todo[
   };
 
   useEffect(() => {
-    setTimeout(() => setShow({ succes: false, error: false }), 5000)
+    setTimeout((prev: typeof show) => setShow({ ...prev, succes: false }), 5000)
   }, [todos]);
 
   return (
@@ -41,39 +41,44 @@ export const TodoInput: FC<{ setTodos: React.Dispatch<React.SetStateAction<Todo[
       display={'flex'}
       flexDirection={'column'}
       noValidate>
-      <FormControl>
+      <FormControl sx={{ width: 300 }}>
         <TextField
           title='Add Task'
           label="Add New Task"
           value={text}
           type='text'
+          fullWidth
           onChange={(e) => handleChange(e)}
         />
         <Button
           type='submit'
           variant='contained'
           disableTouchRipple
-          onClick={(e) => handleClick(e)}>Add</Button>
-        <Collapse in={show.succes}>
-          <Alert
-            icon={<CheckIcon />}
-            severity="success"
-            color="success"
-            variant="filled">
-            <AlertTitle>Success</AlertTitle>
-            You successful add a new task 😍
-          </Alert>
-        </Collapse>
-        <Collapse in={show.error}>
-          <Alert
+          onClick={(e) => handleClick(e)}
+        >Add</Button>
+
+        <Collapse in={show.succes || show.error}>
+          {show.succes
+            && <Alert
+              sx={{ width: 300 }}
+              icon={<CheckIcon />}
+              severity="success"
+              color="success"
+              variant="filled">
+              <AlertTitle >Success</AlertTitle>
+              You successful add a new task 😍
+            </Alert>}
+          {show.error && <Alert
+            sx={{ width: 300 }}
             icon={<ErrorIcon />}
             severity="error"
             color="error"
             variant="filled">
             <AlertTitle>Error</AlertTitle>
             Input can't be empty!
-          </Alert>
+          </Alert>}
         </Collapse>
+
       </FormControl>
     </Box>
   )
