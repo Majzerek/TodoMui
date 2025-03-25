@@ -4,15 +4,17 @@ import CheckIcon from '@mui/icons-material/Check';
 import React from 'react'
 interface ShowProp {
   show: {
-    succes: boolean,
+    success: boolean,
     error: boolean
-  }
+  },
+  errorMsg:string,
+  successMsg:string,
 }
-export const AlertComponent = ({ show }: ShowProp) => {
+export const AlertComponent = ({ show,errorMsg,successMsg }: ShowProp) => {
   
   return (
-    <Collapse in={show.succes || show.error}>
-      {show.succes
+    <Collapse in={show.success || show.error}>
+      {show.success
         && <Alert
           sx={{ width: 300 }}
           icon={<CheckIcon />}
@@ -20,7 +22,7 @@ export const AlertComponent = ({ show }: ShowProp) => {
           color="success"
           variant="filled">
           <AlertTitle >Success</AlertTitle>
-          You successful add a new task 😍
+          {successMsg}
         </Alert>}
       {show.error && <Alert
         sx={{ width: 300 }}
@@ -29,7 +31,7 @@ export const AlertComponent = ({ show }: ShowProp) => {
         color="error"
         variant="filled">
         <AlertTitle>Error</AlertTitle>
-        Input can't be empty!
+       {errorMsg}
       </Alert>}
     </Collapse>
 

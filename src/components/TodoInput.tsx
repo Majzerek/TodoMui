@@ -9,7 +9,7 @@ export const TodoInput: FC<{ setTodos: React.Dispatch<React.SetStateAction<Todo[
 
   const [text, setText] = useState('');
   const [show, setShow] = useState({
-    succes: false,
+    success: false,
     error: false
   });
 
@@ -24,15 +24,15 @@ export const TodoInput: FC<{ setTodos: React.Dispatch<React.SetStateAction<Todo[
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (!text) {
-      return setShow({ succes: false, error: true }), setTimeout((prev: typeof show) => setShow({ ...prev, error: false }), 5000)
+      return setShow({ success: false, error: true }), setTimeout((prev: typeof show) => setShow({ ...prev, error: false }), 5000)
     };
     addTodo(text);
     setText('');
-    setShow({ succes: true, error: false })
+    setShow({ success: true, error: false })
   };
 
   useEffect(() => {
-    setTimeout((prev: typeof show) => setShow({ ...prev, succes: false }), 5000)
+    setTimeout((prev: typeof show) => setShow({ ...prev, success: false }), 5000)
   }, [todos]);
 
   return (
@@ -57,7 +57,10 @@ export const TodoInput: FC<{ setTodos: React.Dispatch<React.SetStateAction<Todo[
           onClick={(e) => handleClick(e)}
         >Add</Button>
 
-        <AlertComponent show={show} />
+        <AlertComponent
+          show={show}
+          errorMsg="Input can't be empty!"
+          successMsg='You successful add a new task 😍' />
       </FormControl>
     </Box>
   )
