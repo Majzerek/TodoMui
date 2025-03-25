@@ -20,7 +20,7 @@ export const TodoList = ({ todosList, deleteTodo, toogleTodo }: TodoListType) =>
   }
   return (
     <>
-      <Typography variant='h3' textAlign={'center'} mb={2}>Task List</Typography>
+      <Typography variant='h3' textAlign={'center'} mb={2} color='secondary'>Task List</Typography>
       <Box
         display={'flex'}
         flexDirection={'column'}
@@ -43,12 +43,22 @@ export const TodoList = ({ todosList, deleteTodo, toogleTodo }: TodoListType) =>
             flex={2}
             borderBottom={`4px solid ${theme.palette.secondary.main}`}
             borderRadius={3}
-            p={0.7}
+            px={1}
+            pb={.5}
             sx={todo.completed ? { color: 'grey', textDecoration: 'line-through', borderColor: ' lightgray' } : undefined}
             title={todo.text}>{todo.text}</Box>
+
             <Box component={'span'} flex={0}>
-              <Button color={'error'} sx={{ mr: 1 }} variant={'contained'} onClick={() => deleteTodo(todo.id)}>Delete</Button>
-              <Button color='secondary' variant={'contained'} onClick={() => toogleTodo(todo.id)} disabled={todo.completed}>Finished</Button>
+              <Button 
+              color={'error'} 
+              sx={{ mr: 1 }} 
+              variant={'contained'} 
+              onClick={() => deleteTodo(todo.id)}>Delete</Button>
+              <Button 
+              color='secondary' 
+              variant={'contained'} 
+              onClick={() => toogleTodo(todo.id)} 
+              disabled={todo.completed}>Finished</Button>
             </Box>
           </Typography>)}
       </Box>

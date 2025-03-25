@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Todo } from '../App';
-import { Alert, AlertTitle, Box, Button, Collapse, FormControl, TextField } from '@mui/material';
-import ErrorIcon from "@mui/icons-material/Error";
-import CheckIcon from '@mui/icons-material/Check';
+import { Box, Button, FormControl, TextField } from '@mui/material';
+import { AlertComponent } from './AlertComponent';
+
 
 export const TodoInput: FC<{ setTodos: React.Dispatch<React.SetStateAction<Todo[]>>, todos: Todo[] }> = ({ setTodos, todos }) => {
 
@@ -57,28 +57,7 @@ export const TodoInput: FC<{ setTodos: React.Dispatch<React.SetStateAction<Todo[
           onClick={(e) => handleClick(e)}
         >Add</Button>
 
-        <Collapse in={show.succes || show.error}>
-          {show.succes
-            && <Alert
-              sx={{ width: 300 }}
-              icon={<CheckIcon />}
-              severity="success"
-              color="success"
-              variant="filled">
-              <AlertTitle >Success</AlertTitle>
-              You successful add a new task 😍
-            </Alert>}
-          {show.error && <Alert
-            sx={{ width: 300 }}
-            icon={<ErrorIcon />}
-            severity="error"
-            color="error"
-            variant="filled">
-            <AlertTitle>Error</AlertTitle>
-            Input can't be empty!
-          </Alert>}
-        </Collapse>
-
+        <AlertComponent show={show} />
       </FormControl>
     </Box>
   )
